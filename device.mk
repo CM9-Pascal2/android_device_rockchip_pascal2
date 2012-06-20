@@ -23,6 +23,7 @@ endif
 
 DEVICE_PACKAGE_OVERLAYS := device/rockchip/pascal2/overlay
 
+#audio
 PRODUCT_PACKAGES := \
 	audio.a2dp.default \
 	libaudioutils 
@@ -35,6 +36,7 @@ PRODUCT_COPY_FILES := \
         device/rockchip/pascal2/rk29xxnand_ko.ko.3.0.8+:root/rk29xxnand_ko.ko.3.0.8+ \
         device/rockchip/pascal2/rk29xxnand_ko.ko.3.0.8+:recovery/root/rk29xxnand_ko.ko.3.0.8+ \
 	device/rockchip/pascal2/ueventd.rk29board.rc:root/ueventd.rk29board.rc \
+	device/rockchip/pascal2/prebuilt/init:root/init \
         device/rockchip/pascal2/initlogo.rle:root/initlogo.rle \
         device/rockchip/pascal2/initlogo.rle:recovery/root/initlogo.rle \
         device/rockchip/pascal2/ueventd.rk29board.rc:recovery/root/ueventd.rk29board.rc \
