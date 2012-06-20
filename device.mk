@@ -96,6 +96,7 @@ PRODUCT_COPY_FILES += \
 	device/rockchip/pascal2/prebuilt/lib/libril-rk29-dataonly.so:system/lib/libril-rk29-dataonly.so \
 	device/rockchip/pascal2/prebuilt/lib/libRkDeflatingDecompressor.so:system/lib/libRkDeflatingDecompressor.so \
         device/rockchip/pascal2/prebuilt/lib/libGAL.so:system/lib/libGAL.so \
+	device/rockchip/pascal2/prebuilt/lib/libGLSLC.so:system/lib/libGLSLC.so \
 	device/rockchip/pascal2/prebuilt/lib/librkswscale.so:system/lib/librkswscale.so \
 	device/rockchip/pascal2/prebuilt/lib/librkwmapro.so:system/lib/librkwmapro.so \
 	device/rockchip/pascal2/egl.cfg:system/lib/egl/egl.cfg \
