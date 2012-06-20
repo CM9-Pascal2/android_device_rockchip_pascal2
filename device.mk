@@ -28,23 +28,25 @@ PRODUCT_PACKAGES := \
 	libaudioutils 
 
 PRODUCT_COPY_FILES := \
-	$(LOCAL_KERNEL):kernel \
-	device/rockchip/pascal2/init.rk29board.rc:root/init.rk29board.rc \
+	$(LOCAL_KERNEL):kernel.img \
         device/rockchip/pascal2/init.rc:root/init.rc \
+        device/rockchip/pascal2/init.rk29board.usb.rc:root/init.rk29board.usb.rc \
+	device/rockchip/pascal2/init.rk29board.rc:root/init.rk29board.rc \
+        device/rockchip/pascal2/rk29xxnand_ko.ko.3.0.8+:root/rk29xxnand_ko.ko.3.0.8+ \
+        device/rockchip/pascal2/rk29xxnand_ko.ko.3.0.8+:recovery/root/rk29xxnand_ko.ko.3.0.8+ \
 	device/rockchip/pascal2/ueventd.rk29board.rc:root/ueventd.rk29board.rc \
+        device/rockchip/pascal2/initlogo.rle:root/initlogo.rle \
+        device/rockchip/pascal2/initlogo.rle:recovery/root/initlogo.rle \
+        device/rockchip/pascal2/ueventd.rk29board.rc:recovery/root/ueventd.rk29board.rc \
 	device/rockchip/pascal2/etc/vold.fstab:system/etc/vold.fstab \
 	device/rockchip/pascal2/etc/media_profiles.xml:system/etc/media_profiles.xml \
 	device/rockchip/pascal2/etc/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-	device/rockchip/pascal2/prebuilt/su:system/xbin/su \
-	device/rockchip/pascal2/prebuilt/Superuser.apk:system/app/Superuser.apk \
-	device/rockchip/pascal2/prebuilt/busybox:system/bin/busybox \
 	#device/rockchip/pascal2/prebuilt/reboot-recovery.sh:system/bin/reboot-recovery.sh
      
 
 #Vendor firms
 PRODUCT_COPY_FILES += \
 	$(call find-copy-subdir-files,*,device/rockchip/pascal2/prebuilt/vendor/firm,system/etc/firmware)
-
 
 # kernel modules for ramdisk
 PRODUCT_COPY_FILES += \
