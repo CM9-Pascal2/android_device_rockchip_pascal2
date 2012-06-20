@@ -34,7 +34,7 @@ BOARD_KERNEL_PAGESIZE := 4096
 
 TARGET_PROVIDES_INIT_RC := true
 
-BOARD_CUSTOM_BOOTIMG_MK := device/rockchip/pascal2/shbootimg.mk
+#BOARD_CUSTOM_BOOTIMG_MK := device/rockchip/pascal2/shbootimg.mk
 
 # Partitions 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608

@@ -42,7 +42,12 @@ PRODUCT_COPY_FILES := \
 	device/rockchip/pascal2/etc/media_profiles.xml:system/etc/media_profiles.xml \
 	device/rockchip/pascal2/etc/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
 	#device/rockchip/pascal2/prebuilt/reboot-recovery.sh:system/bin/reboot-recovery.sh
-     
+
+#Rktools and custom boot/recovery img
+PRODUCT_COPY_FILES += \
+	$(call find-copy-subdir-files,*,device/rockchip/pascal2/rktools,rktools) \
+        device/rockchip/pascal2/build.sh:build.sh 
+ 
 
 #Vendor firms
 PRODUCT_COPY_FILES += \
