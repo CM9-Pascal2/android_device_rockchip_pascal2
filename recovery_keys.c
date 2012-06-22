@@ -12,22 +12,16 @@ int device_toggle_display(volatile char* key_pressed, int key_code) {
 int device_handle_key(int key_code, int visible) {
     if (visible) {
         switch (key_code) {
-            case KEY_3:
-            case KEY_ENTER:
-            case KEY_SEARCH:
+            case 114:
                 return HIGHLIGHT_DOWN;
 
-            case KEY_4:
-            case KEY_HOME:
-            case KEY_MENU:
+            case 115:
                 return HIGHLIGHT_UP;
 
-            case KEY_2:
-            case KEY_POWER:
+            case 116:
                 return SELECT_ITEM;
             
-            case KEY_1:
-            case KEY_ESC:
+            case 158:
                 if (ui_menu_level > 0) {
                     return GO_BACK;
                 }

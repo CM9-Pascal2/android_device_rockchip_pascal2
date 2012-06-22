@@ -20,15 +20,10 @@ else
 LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
-
 DEVICE_PACKAGE_OVERLAYS := device/rockchip/pascal2/overlay
 
-#audio
-PRODUCT_PACKAGES := \
-	audio.a2dp.default \
-	libaudioutils 
-
-PRODUCT_COPY_FILES := \
+#Ramdisk and boot
+PRODUCT_COPY_FILES += \
 	$(LOCAL_KERNEL):kernel.img \
         device/rockchip/pascal2/init.rc:root/init.rc \
         device/rockchip/pascal2/init.rk29board.usb.rc:root/init.rk29board.usb.rc \
@@ -39,17 +34,30 @@ PRODUCT_COPY_FILES := \
 	device/rockchip/pascal2/prebuilt/init:root/init \
         device/rockchip/pascal2/initlogo.rle:root/initlogo.rle \
         device/rockchip/pascal2/initlogo.rle:recovery/root/initlogo.rle \
-        device/rockchip/pascal2/ueventd.rk29board.rc:recovery/root/ueventd.rk29board.rc \
+        device/rockchip/pascal2/ueventd.rk29board.rc:recovery/root/ueventd.rk29board.rc 
+	
+# These are the hardware-specific configuration files
+PRODUCT_COPY_FILES += \
 	device/rockchip/pascal2/etc/vold.fstab:system/etc/vold.fstab \
 	device/rockchip/pascal2/etc/media_profiles.xml:system/etc/media_profiles.xml \
 	device/rockchip/pascal2/etc/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-	#device/rockchip/pascal2/prebuilt/reboot-recovery.sh:system/bin/reboot-recovery.sh
+	device/rockchip/pascal2/etc/audio_effects.conf:system/etc/audio_effects.conf 
+
 
 #Rktools and custom boot/recovery img
 PRODUCT_COPY_FILES += \
-	$(call find-copy-subdir-files,*,device/rockchip/pascal2/rktools,rktools) \
-        device/rockchip/pascal2/build.sh:build.sh 
- 
+	$(call find-copy-subdir-files,*,device/rockchip/pascal2/rktools,rktools) 
+
+#usb
+PRODUCT_COPY_FILES += \
+	$(call find-copy-subdir-files,*,device/rockchip/pascal2/prebuilt/usb,system) 
+
+
+#Su
+PRODUCT_COPY_FILES += \
+	device/rockchip/pascal2/prebuilt/su:system/xbin/su \
+	device/rockchip/pascal2/prebuilt/busybox:system/bin/busybox \
+	device/rockchip/pascal2/prebuilt/busybox:system/xbin/busybox \
 
 #Vendor firms
 PRODUCT_COPY_FILES += \
@@ -71,22 +79,17 @@ PRODUCT_COPY_FILES += \
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES := \
 	wifi.interface=wlan0 \
-	wifi.supplicant_scan_interval=15
+	wifi.supplicant_scan_interval=160
 
-# Set default USB interface
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-	persist.sys.usb.config=mtp,adb
-
-# Live Wallpapers
-#PRODUCT_PACKAGES += \
-#	LiveWallpapers \
-#	LiveWallpapersPicker \
-#	VisualizationWallpapers \
-#	librs_jni
+#Audio
+PRODUCT_PACKAGES += \
+	audio.a2dp.default \
+	libaudioutils \
+	libtinyalsa
 
 #Camera
 PRODUCT_PACKAGES += \
-     camera.rk2918board
+    Camera
 
 # Key maps
 PRODUCT_COPY_FILES += \
@@ -106,6 +109,7 @@ PRODUCT_COPY_FILES += \
 	device/rockchip/pascal2/prebuilt/lib/egl/libGLESv1_CM_VIVANTE.so:system/lib/egl/libGLESv1_CM_VIVANTE.so \
 	device/rockchip/pascal2/prebuilt/lib/egl/libGLESv2_VIVANTE.so:system/lib/egl/libGLESv2_VIVANTE.so \
 	device/rockchip/pascal2/prebuilt/lib/hw/audio.primary.rk29sdk.so:system/lib/hw/audio.primary.rk29sdk.so \
+	device/rockchip/pascal2/prebuilt/lib/hw/audio_policy.rk29sdk.so:system/lib/hw/audio_policy.rk29sdk.so \
 	device/rockchip/pascal2/prebuilt/lib/hw/camera.rk29board.so:system/lib/hw/camera.rk29board.so \
         device/rockchip/pascal2/prebuilt/lib/hw/copybit.rk29board.so:system/lib/hw/copybit.rk29board.so \
 	device/rockchip/pascal2/prebuilt/lib/hw/gralloc.rk29board.so:system/lib/hw/gralloc.rk29board.so \
@@ -124,31 +128,37 @@ PRODUCT_COPY_FILES += \
 # These are the hardware-specific features
 # Permissions
 PRODUCT_COPY_FILES += \
-	frameworks/base/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
+frameworks/base/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
 	frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
 	frameworks/base/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
 	frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
 	frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-	frameworks/base/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
 	frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+	frameworks/base/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
 	frameworks/base/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+	frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
 	frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
 	frameworks/base/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
 	frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
 	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
 	frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
-	packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml \
+	frameworks/base/data/etc/com.tmobile.software.themes.xml:system/etc/permissions/com.tmobile.software.themes.xml \
+	packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml
 
+#Build.prop 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.opengles.version=131072 \
-        wifi.interface=wlan0 \
+	persist.sys.root_access=3 \
+	persist.sys.usb.config=mass_storage,adb \
 	hwui.render_dirty_regions=false \
 	qemu.sf.lcd_density=120 \
-        rild.libpath=/system/lib/libril-rk29-dataonly.so \
         ro.kernel.android.checkjni=1 \
         persist.sys.ui.hw=true \
         opengl.vivante.texture=1 \
-        sys.hwc.compose_policy=6 
+        sys.hwc.compose_policy=6  \
+	ro.additionalmounts = /mnt/external_sd \
+	ro.vold.switchablepair=/mnt/sdcard,/mnt/external_sd \
+	persist.sys.vold.switchexternal=0 \
 
 PRODUCT_CHARACTERISTICS := tablet
 
@@ -158,14 +168,13 @@ PRODUCT_PACKAGES += \
 	librs_jni \
 	com.android.future.usb.accessory
 
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
 	make_ext4fs \
-	setup_fs
+	setup_fs \
+	e2fsck
 
-#Calibration app
-PRODUCT_PACKAGES += \
-       TSCalibration
 
 #Fix for dalvik-cache
 PRODUCT_PROPERTY_OVERRIDES += \

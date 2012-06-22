@@ -16,11 +16,12 @@
 
 # This variable is set first, so it can be overridden
 # by BoardConfigVendor.mk
-USE_CAMERA_STUB := true
+
 
 # Use the non-open-source parts, if they're present
 -include vendor/rockchip/pascal2/BoardConfigVendor.mk
 
+TARGET_BOARD_PLATFORM := rk29sdk
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
@@ -47,18 +48,25 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 
 TARGET_PREBUILT_KERNEL := device/rockchip/pascal2/kernel
 
-#graphics
+#Graphics
 BOARD_EGL_CFG := device/rockchip/pascal2/egl.cfg
 BOARD_NO_RGBX_8888 := true
-#USE_OPENGL_RENDERER := true
+USE_OPENGL_RENDERER := true
 
 BOARD_USE_LEGACY_TOUCHSCREEN := true
+
+#audio
+# Audio
+#BOARD_USES_GENERIC_AUDIO := true
+#BOARD_USES_AUDIO_LEGACY := true
+#Camera
+USE_CAMERA_STUB := true
 
 #recovery
 TARGET_RECOVERY_INITRC := device/rockchip/pascal2/recovery_init.rc
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/rockchip/pascal2/recovery_keys.c
 BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
-
+BOARD_UMS_2ND_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun1/file"
 #wlan
 WPA_SUPPLICANT_VERSION := VER_0_6_X
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
@@ -68,7 +76,7 @@ WIFI_DRIVER_MODULE_NAME     := "wlan"
 
 
 #Bluethoot
-BOARD_HAVE_BLUETOOTH := false
+BOARD_HAVE_BLUETOOTH := true
 #BOARD_HAVE_BLUETOOTH_BCM := true
 
 
