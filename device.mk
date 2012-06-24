@@ -53,19 +53,9 @@ PRODUCT_COPY_FILES += \
 	$(call find-copy-subdir-files,*,device/rockchip/pascal2/prebuilt/usb,system) 
 
 
-#Su
-PRODUCT_COPY_FILES += \
-	device/rockchip/pascal2/prebuilt/su:system/xbin/su \
-	device/rockchip/pascal2/prebuilt/busybox:system/bin/busybox \
-	device/rockchip/pascal2/prebuilt/busybox:system/xbin/busybox \
-
 #Vendor firms
 PRODUCT_COPY_FILES += \
 	$(call find-copy-subdir-files,*,device/rockchip/pascal2/prebuilt/vendor/firm,system/etc/firmware)
-
-# kernel modules for ramdisk
-PRODUCT_COPY_FILES += \
-	$(call find-copy-subdir-files,*,device/rockchip/pascal2/prebuilt/vendor/modules,system/lib/modules)
 
 # Additional Scripts
 PRODUCT_COPY_FILES += \
@@ -87,10 +77,6 @@ PRODUCT_PACKAGES += \
 	libaudioutils \
 	libtinyalsa
 
-#Camera
-PRODUCT_PACKAGES += \
-    Camera
-
 # Key maps
 PRODUCT_COPY_FILES += \
 	device/rockchip/pascal2/prebuilt/rk29-keypad.kl:system/usr/keylayout/rk29-keypad.kl \
@@ -110,7 +96,6 @@ PRODUCT_COPY_FILES += \
 	device/rockchip/pascal2/prebuilt/lib/egl/libGLESv2_VIVANTE.so:system/lib/egl/libGLESv2_VIVANTE.so \
 	device/rockchip/pascal2/prebuilt/lib/hw/audio.primary.rk29sdk.so:system/lib/hw/audio.primary.rk29sdk.so \
 	device/rockchip/pascal2/prebuilt/lib/hw/audio_policy.rk29sdk.so:system/lib/hw/audio_policy.rk29sdk.so \
-	device/rockchip/pascal2/prebuilt/lib/hw/camera.rk29board.so:system/lib/hw/camera.rk29board.so \
         device/rockchip/pascal2/prebuilt/lib/hw/copybit.rk29board.so:system/lib/hw/copybit.rk29board.so \
 	device/rockchip/pascal2/prebuilt/lib/hw/gralloc.rk29board.so:system/lib/hw/gralloc.rk29board.so \
 	device/rockchip/pascal2/prebuilt/lib/hw/hwcomposer.rk29board.so:system/lib/hw/hwcomposer.rk29board.so \
@@ -153,12 +138,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	hwui.render_dirty_regions=false \
 	qemu.sf.lcd_density=120 \
         ro.kernel.android.checkjni=1 \
-        persist.sys.ui.hw=true \
-        opengl.vivante.texture=1 \
         sys.hwc.compose_policy=6  \
 	ro.additionalmounts = /mnt/external_sd \
 	ro.vold.switchablepair=/mnt/sdcard,/mnt/external_sd \
 	persist.sys.vold.switchexternal=0 \
+	ro.sf.hwrotation=270
 
 PRODUCT_CHARACTERISTICS := tablet
 
@@ -171,10 +155,21 @@ PRODUCT_PACKAGES += \
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
-	make_ext4fs \
+   	utility_make_ext4fs \
+	bootmenu_busybox \
 	setup_fs \
-	e2fsck
+	e2fsck \
+	mke2fs \
+	resize2fs
 
+# other kernel modules not in ramdisk
+PRODUCT_COPY_FILES += $(foreach module,\
+	$(filter-out $(RAMDISK_MODULES),$(wildcard device/rockchip/pascal2/modules/*.ko)),\
+	$(module):system/lib/modules/$(notdir $(module)))
+
+# copy the builder 
+PRODUCT_COPY_FILES += \
+	device/rockchip/pascal2/custom_boot.sh:custom_boot.sh
 
 #Fix for dalvik-cache
 PRODUCT_PROPERTY_OVERRIDES += \

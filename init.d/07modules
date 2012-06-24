@@ -3,6 +3,6 @@
 # Load any extra modules
 
 
-insmod gspca_main.ko
-insmod scsi_wait_scan.ko
+insmod /system/lib/modules/gspca_main.ko
+insmod /system/lib/modules/scsi_wait_scan.ko
 

@@ -35,6 +35,7 @@ loglevel 3
 
 # create mountpoints
     mkdir /mnt/sdcard 0000 system system
+     mkdir /emmc 0000 system system
 
 # Create cgroup mount point for cpu accounting
     mkdir /acct
@@ -98,10 +99,18 @@ loglevel 3
 
 on fs
     insmod /rk29xxnand_ko.ko
-# mount mtd partitions
-    mount ext3 mtd@system /system wait rw noatime nodiratime
-    mount ext3 mtd@userdata /data wait noatime nodiratime nosuid nodev
-    mount ext3 mtd@cache /cache wait noatime nodiratime nosuid nodev
+    # mount  partitions
+    mount ext3 mtd@system /system noatime
+    mount ext3 mtd@userdata /data nosuid nodev noatime
+    mount ext3 mtd@cache /cache nosuid nodev noatime
+    
+    #mount ext4 /dev/block/mtdblock9 /system
+    #mount ext4 /dev/block/stl9 /system ro remount
+
+    #mount ext4 /dev/block/mtdblock6 /cache
+
+    #mount ext4 /dev/block/mtdblock7 /data
+
 
 on post-fs
     # once everything is setup, no need to modify /
