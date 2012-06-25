@@ -60,9 +60,9 @@ TARGET_CUSTOM_RELEASETOOL := ./device/rockchip/pascal2/releasetools/squisher
 
 #Graphics
 BOARD_EGL_CFG := device/rockchip/pascal2/egl.cfg
-BOARD_NO_RGBX_8888 := true
-USE_OPENGL_RENDERER := true
-COMMON_GLOBAL_CFLAGS += -DSURFACEFLINGER_FORCE_SCREEN_RELEASE
+#BOARD_NO_RGBX_8888 := true
+#USE_OPENGL_RENDERER := true
+#COMMON_GLOBAL_CFLAGS += -DSURFACEFLINGER_FORCE_SCREEN_RELEASE
 
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 
@@ -78,7 +78,7 @@ USE_CAMERA_STUB := true
 TARGET_RECOVERY_INITRC := device/rockchip/pascal2/recovery_init.rc
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/rockchip/pascal2/recovery_keys.c
 BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
-BOARD_UMS_2ND_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun1/file"
+#BOARD_UMS_2ND_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun1/file"
 #wlan
 WPA_SUPPLICANT_VERSION := VER_0_6_X
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
@@ -88,7 +88,7 @@ WIFI_DRIVER_MODULE_NAME     := "wlan"
 
 
 #Bluethoot
-BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH := false
 #BOARD_HAVE_BLUETOOTH_BCM := true
 
 

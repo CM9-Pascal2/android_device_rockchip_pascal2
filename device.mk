@@ -112,43 +112,33 @@ PRODUCT_COPY_FILES += \
 	device/rockchip/pascal2/prebuilt/lib/hw/sensors.rk29board.so:system/lib/hw/sensors.rk29board.so
 
 # These are the hardware-specific features
-# Permissions
 PRODUCT_COPY_FILES += \
-frameworks/base/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
-	frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+	frameworks/base/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
+	frameworks/base/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
 	frameworks/base/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
-	frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
 	frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-	frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-	frameworks/base/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
 	frameworks/base/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
-	frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
-	frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
 	frameworks/base/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
-	frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
 	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+	frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+	frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
 	frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
-	frameworks/base/data/etc/com.tmobile.software.themes.xml:system/etc/permissions/com.tmobile.software.themes.xml \
-	packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml
+	packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
 #Build.prop 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.opengles.version=131072 \
-	persist.sys.root_access=3 \
-	persist.sys.usb.config=mass_storage,adb \
+        wifi.interface=wlan0 \
 	hwui.render_dirty_regions=false \
 	qemu.sf.lcd_density=120 \
+        rild.libpath=/system/lib/libril-rk29-dataonly.so \
         ro.kernel.android.checkjni=1 \
+        persist.sys.ui.hw=true \
+        opengl.vivante.texture=1 \
         sys.hwc.compose_policy=6 \
-	persist.sys.ui.hw=true \
- 	opengl.vivante.texture=1 \
-	ro.sf.fakerotation=true \
-	ro.additionalmounts = /mnt/external_sd \
-	ro.vold.switchablepair=/mnt/sdcard,/mnt/external_sd \
-	persist.sys.vold.switchexternal=0 \
-	ro.sf.hwrotation=270 
+	qemu.sf.lcd_density=120 \
+	ro.vold.switchablepair=/mnt/sdcard,/mnt/external_sd
 
-PRODUCT_CHARACTERISTICS := tablet
 
 PRODUCT_TAGS += dalvik.gc.type-precise
 
@@ -156,7 +146,13 @@ PRODUCT_PACKAGES += \
 	librs_jni \
 	com.android.future.usb.accessory
 
-
+# Set default USB interface
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+	persist.sys.usb.config=mass_storage
+#Screen
+PRODUCT_PACKAGES += \
+	TSCalibration \
+	
 # Filesystem management tools
 PRODUCT_PACKAGES += \
    	utility_make_ext4fs \
