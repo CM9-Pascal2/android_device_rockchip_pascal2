@@ -61,7 +61,8 @@ TARGET_CUSTOM_RELEASETOOL := ./device/rockchip/pascal2/releasetools/squisher
 #Graphics
 BOARD_EGL_CFG := device/rockchip/pascal2/egl.cfg
 BOARD_NO_RGBX_8888 := true
-#USE_OPENGL_RENDERER := true
+USE_OPENGL_RENDERER := true
+COMMON_GLOBAL_CFLAGS += -DSURFACEFLINGER_FORCE_SCREEN_RELEASE
 
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 

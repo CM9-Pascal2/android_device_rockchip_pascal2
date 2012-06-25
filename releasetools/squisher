@@ -23,15 +23,6 @@ if [ -z "$OUT" -o ! -d "$OUT" ]; then
 	exit 1
 fi
 
-#Build custom boot.img and recovery (rockchip)
-printf "Buiding custom boot.img from rockchip boards..."
-cd $OUT
-./custom_boot.sh
-rm $REPACK/ota/boot.img
-cp $OUT/boot.img $REPACK/ota
-
-printf "End..."
-
 if [ "$TARGET_BUILD_TYPE" = "debug" ]; then
     OTAPACKAGE=$OUT/${TARGET_PRODUCT}_debug-ota-$TARGET_BUILD_VARIANT.$USER.zip
 elif [ "$TARGET_BUILD_VARIANT" = "userdebug" ]; then
@@ -73,8 +64,8 @@ printf "Buiding custom boot.img from rockchip boards..."
 cd $OUT
 ./custom_boot.sh
 rm $REPACK/ota/boot.img
-cp $OUT/boot.img $REPACK/ota
-
+cd $OUT 
+cp boot.img $REPACK/ota/ 
 printf "End..."
 
 # Fix build.prop

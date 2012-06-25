@@ -39,7 +39,7 @@ __doc__ = ota_from_target_files.__doc__
 
 def CopyBootFiles(input_zip, output_zip):
   output_zip.write(os.path.join(TARGET_DIR, "boot.img"),"boot.img")
-  output_zip.write(os.path.join(UTILITIES_DIR, "busybox"),"busybox")
+  #output_zip.write(os.path.join(UTILITIES_DIR, "busybox"),"busybox")
 
 
 def WriteFullOTAPackage(input_zip, output_zip):

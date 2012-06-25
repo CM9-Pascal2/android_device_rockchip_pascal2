@@ -99,6 +99,7 @@ PRODUCT_COPY_FILES += \
         device/rockchip/pascal2/prebuilt/lib/hw/copybit.rk29board.so:system/lib/hw/copybit.rk29board.so \
 	device/rockchip/pascal2/prebuilt/lib/hw/gralloc.rk29board.so:system/lib/hw/gralloc.rk29board.so \
 	device/rockchip/pascal2/prebuilt/lib/hw/hwcomposer.rk29board.so:system/lib/hw/hwcomposer.rk29board.so \
+	device/rockchip/pascal2/prebuilt/lib/hw/camera.rk29board.so:system/lib/hw/camera.rk29board.so \
 	device/rockchip/pascal2/prebuilt/lib/hw/lights.rk29board.so:system/lib/hw/lights.rk29board.so \
 	device/rockchip/pascal2/prebuilt/usr/keylayout/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_028e.kl \
 	device/rockchip/pascal2/prebuilt/usr/keylayout/Vendor_046d_Product_c216.kl:system/usr/keylayout/Vendor_046d_Product_c216.kl \
@@ -138,11 +139,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	hwui.render_dirty_regions=false \
 	qemu.sf.lcd_density=120 \
         ro.kernel.android.checkjni=1 \
-        sys.hwc.compose_policy=6  \
+        sys.hwc.compose_policy=6 \
+	persist.sys.ui.hw=true \
+ 	opengl.vivante.texture=1 \
+	ro.sf.fakerotation=true \
 	ro.additionalmounts = /mnt/external_sd \
 	ro.vold.switchablepair=/mnt/sdcard,/mnt/external_sd \
 	persist.sys.vold.switchexternal=0 \
-	ro.sf.hwrotation=270
+	ro.sf.hwrotation=270 
 
 PRODUCT_CHARACTERISTICS := tablet
 

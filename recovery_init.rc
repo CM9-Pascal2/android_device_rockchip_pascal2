@@ -38,9 +38,6 @@ on boot
 service ueventd /sbin/ueventd
     critical
 
-service erase_misc /sbin/sh -c "busybox dd if=/misc.img of=/dev/block/mtdblock1; sync"
-    oneshot
-
 service recovery /sbin/recovery
 
 service adbd /sbin/adbd recovery
