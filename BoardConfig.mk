@@ -37,13 +37,13 @@ BOARD_RAMDISK_BASE := 0x62000000
 
 TARGET_PROVIDES_INIT_RC := true
 
+TARGET_BOOTLOADER_BOARD_NAME := rk29board
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
-#BOARD_CUSTOM_BOOTIMG_MK := device/rockchip/pascal2/shbootimg.mk
 
 # Partitions 
-BOARD_BOOTIMAGE_PARTITION_SIZE := 7836582
+BOARD_BOOTIMAGE_PARTITION_SIZE := 8936582
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 9388608
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 339738624
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 2013200384
@@ -60,25 +60,35 @@ TARGET_CUSTOM_RELEASETOOL := ./device/rockchip/pascal2/releasetools/squisher
 
 #Graphics
 BOARD_EGL_CFG := device/rockchip/pascal2/egl.cfg
-#BOARD_NO_RGBX_8888 := true
-#USE_OPENGL_RENDERER := true
-#COMMON_GLOBAL_CFLAGS += -DSURFACEFLINGER_FORCE_SCREEN_RELEASE
-
+BOARD_NO_RGBX_8888 := true
+USE_OPENGL_RENDERER := true
+BOARD_USES_PROPRIETARY_OMX := true
+COMMON_GLOBAL_CFLAGS += -DSURFACEFLINGER_FORCE_SCREEN_RELEASE
+BOARD_USES_HWCOMPOSER := true
 BOARD_USE_LEGACY_TOUCHSCREEN := true
-
-#audio
-# Audio
-#BOARD_USES_GENERIC_AUDIO := true
-#BOARD_USES_AUDIO_LEGACY := true
+# Misc display settings
+BOARD_USE_SKIA_LCDTEXT := true
+BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
+#TODO BGRA8888
 
 #Camera
 USE_CAMERA_STUB := true
+
+# Enable WEBGL in WebKit
+ENABLE_WEBGL := true
 
 #recovery
 TARGET_RECOVERY_INITRC := device/rockchip/pascal2/recovery_init.rc
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/rockchip/pascal2/recovery_keys.c
 BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
-#BOARD_UMS_2ND_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun1/file"
+BOARD_NO_RGBX_8888 := true
+BOARD_UMS_2ND_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun1/file"
+BOARD_HAS_NO_SELECT_BUTTON := true
+#Vold
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
+TARGET_USE_CUSTOM_SECOND_LUN_NUM := 1
+BOARD_VOLD_MAX_PARTITIONS := 20
+
 #wlan
 WPA_SUPPLICANT_VERSION := VER_0_6_X
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
@@ -86,10 +96,6 @@ WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/wlan.ko"
 WIFI_DRIVER_MODULE_ARG      := ""
 WIFI_DRIVER_MODULE_NAME     := "wlan"
 
-
 #Bluethoot
-BOARD_HAVE_BLUETOOTH := false
+BOARD_HAVE_BLUETOOTH :=true
 #BOARD_HAVE_BLUETOOTH_BCM := true
-
-
-

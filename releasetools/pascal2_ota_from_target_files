@@ -52,7 +52,6 @@ def WriteFullOTAPackage(input_zip, output_zip):
               "pre-device": GetBuildProp("ro.product.device", input_zip),
               "post-timestamp": GetBuildProp("ro.build.date.utc", input_zip),
               }
-
   device_specific = common.DeviceSpecificParams(
       input_zip=input_zip,
       input_version=OPTIONS.info_dict["recovery_api_version"],

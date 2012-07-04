@@ -5,4 +5,7 @@ ro.modversion=CyanogenMod9-vurrut
 ro.product.locale.language=es
 ro.product.locale.region=ES
 ro.com.android.dateformat=dd-MM-yyyy
-
+rild.libargs=-d_/dev/ttyUSB1
+ril.pppchannel=/dev/ttyUSB2
+rild.libpath=/system/lib/libril-rk29-dataonly.so
+ril.function.dataonly=1

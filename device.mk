@@ -32,8 +32,10 @@ PRODUCT_COPY_FILES += \
         device/rockchip/pascal2/rk29xxnand_ko.ko.3.0.8+:recovery/root/rk29xxnand_ko.ko.3.0.8+ \
 	device/rockchip/pascal2/ueventd.rk29board.rc:root/ueventd.rk29board.rc \
 	device/rockchip/pascal2/prebuilt/init:root/init \
+	device/rockchip/pascal2/prebuilt/default.prop:recovery/root/default.prop \
         device/rockchip/pascal2/initlogo.rle:root/initlogo.rle \
         device/rockchip/pascal2/initlogo.rle:recovery/root/initlogo.rle \
+	device/rockchip/pascal2/prebuilt/misc.img:recovery/root/misc.img \
         device/rockchip/pascal2/ueventd.rk29board.rc:recovery/root/ueventd.rk29board.rc 
 	
 # These are the hardware-specific configuration files
@@ -48,10 +50,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	$(call find-copy-subdir-files,*,device/rockchip/pascal2/rktools,rktools) 
 
+#Xbin
+PRODUCT_COPY_FILES += \
+	$(call find-copy-subdir-files,*,device/rockchip/pascal2/prebuilt/xbin,system/xbin) 
 #usb
 PRODUCT_COPY_FILES += \
 	$(call find-copy-subdir-files,*,device/rockchip/pascal2/prebuilt/usb,system) 
-
 
 #Vendor firms
 PRODUCT_COPY_FILES += \
@@ -69,13 +73,13 @@ PRODUCT_COPY_FILES += \
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES := \
 	wifi.interface=wlan0 \
-	wifi.supplicant_scan_interval=160
+	wifi.supplicant_scan_interval=15
 
 #Audio
 PRODUCT_PACKAGES += \
 	audio.a2dp.default \
 	libaudioutils \
-	libtinyalsa
+	libtinyalsa \
 
 # Key maps
 PRODUCT_COPY_FILES += \
@@ -128,7 +132,6 @@ PRODUCT_COPY_FILES += \
 #Build.prop 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.opengles.version=131072 \
-        wifi.interface=wlan0 \
 	hwui.render_dirty_regions=false \
 	qemu.sf.lcd_density=120 \
         rild.libpath=/system/lib/libril-rk29-dataonly.so \
@@ -137,8 +140,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
         opengl.vivante.texture=1 \
         sys.hwc.compose_policy=6 \
 	qemu.sf.lcd_density=120 \
-	ro.vold.switchablepair=/mnt/sdcard,/mnt/external_sd
-
+	ro.vold.switchablepair=/mnt/sdcard,/mnt/external_sd \
+	accelerometer.invert_x=1
 
 PRODUCT_TAGS += dalvik.gc.type-precise
 
@@ -149,18 +152,19 @@ PRODUCT_PACKAGES += \
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mass_storage
-#Screen
-PRODUCT_PACKAGES += \
-	TSCalibration \
 	
 # Filesystem management tools
 PRODUCT_PACKAGES += \
    	utility_make_ext4fs \
-	bootmenu_busybox \
+	utility_busybox \
 	setup_fs \
-	e2fsck \
-	mke2fs \
-	resize2fs
+
+#omx
+PRODUCT_PACKAGES += \
+	libOMX_Core \
+
+PRODUCT_PACKAGES += \
+	libyuv
 
 # other kernel modules not in ramdisk
 PRODUCT_COPY_FILES += $(foreach module,\

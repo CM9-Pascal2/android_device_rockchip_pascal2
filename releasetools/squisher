@@ -60,12 +60,13 @@ find ./ -name \*.apk | $XARGS $OPTICHARGER
 )
 
 #Build custom boot.img and recovery (rockchip)
-printf "Buiding custom boot.img from rockchip boards..."
+printf "Buiding custom boot.img/recovery.img from rockchip boards..."
 cd $OUT
 ./custom_boot.sh
 rm $REPACK/ota/boot.img
 cd $OUT 
-cp boot.img $REPACK/ota/ 
+cp boot.img $REPACK/ota/
+cp recovery.img $REPACK/ota/
 printf "End..."
 
 # Fix build.prop

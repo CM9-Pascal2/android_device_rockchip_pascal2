@@ -11,7 +11,9 @@ $(call inherit-product, vendor/cm/config/common_full_tablet_wifionly.mk)
 $(call inherit-product, device/rockchip/pascal2/full_pascal2.mk)
 
 #Animation
-TARGET_BOOTANIMATION_NAME := vertical-480x800
+PRODUCT_COPY_FILES += \
+        vendor/cm/prebuilt/common/bootanimation/vertical-480x800.zip:system/media/bootanimation.zip
+
 
 ## Device identifier. This must come after all inclusions
 # Set those variables here to overwrite the inherited values.

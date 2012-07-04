@@ -7,22 +7,24 @@ on init
     export ANDROID_ROOT /system
     export ANDROID_DATA /data
     export EXTERNAL_STORAGE /sdcard
-    export INTERNAL_STORAGE /emmc
 
     symlink /system/etc /etc
 
     mkdir /boot
+    mkdir /sdcard
     mkdir /sd-ext
     mkdir /datadata
-    mkdir /mnt
     mkdir /emmc
-    mkdir /sdcard 
     mkdir /system
     mkdir /data
     mkdir /cache
     mkdir /kernel
     mount tmpfs tmpfs /tmp
-    
+    mount vfat /dev/block/mtdblock10 /emmc
+    mount ext3 /dev/block/mtdblock6 /cache
+    mount ext3 /dev/block/mtdblock7 /data
+    mount ext3 /dev/block/mtdblock9 /system
+	
     write /sys/devices/virtual/bdi/179:0/read_ahead_kb 2048
     write /sys/devices/virtual/bdi/7:0/read_ahead_kb 2048
     write /sys/devices/virtual/bdi/93:0/read_ahead_kb 2048
@@ -37,6 +39,9 @@ on boot
 
 service ueventd /sbin/ueventd
     critical
+
+service erase_misc /sbin/sh -c "busybox dd if=/misc.img of=/dev/block/mtdblock1; sync"
+    oneshot
 
 service recovery /sbin/recovery
 

@@ -29,10 +29,12 @@ class EdifyGenerator(edify_generator.EdifyGenerator):
       self.script.append(
             ('package_extract_file("busybox", "/tmp/busybox");\n'
              'set_perm(0, 0, 0777, "/tmp/busybox");'))
+      self.script.append(
+            ('delete_recursive("/system");'))
 
     def RunBackup(self, command):
       edify_generator.EdifyGenerator.RunBackup(self, command)
-
+    
     def BMLWriteRawImage(self, partition, image):
       """Write the given package file into the given partition."""
 
@@ -42,3 +44,7 @@ class EdifyGenerator(edify_generator.EdifyGenerator):
             ('assert(package_extract_file("%(image)s", "/tmp/%(image)s"),\n'
              '       run_program("/sbin/nandwrite","-p", "/dev/mtd/mtd3","/tmp/boot.img"),\n'
              '       delete("/tmp/%(image)s"));') % args)
+      self.script.append(
+            ('assert(package_extract_file("recovery.img", "/tmp/recovery.img"),\n'
+             '       run_program("/sbin/nandwrite","-p", "/dev/mtd/mtd4","/tmp/recovery.img"),\n'
+             '       delete("/tmp/recovery.img"));') % args)
