@@ -1,7 +1,7 @@
 #
 # system.prop for pascal2
 #
-ro.modversion=CyanogenMod9-vurrut
+ro.modversion=CyanogenMod10-vurrut
 ro.product.locale.language=es
 ro.product.locale.region=ES
 ro.com.android.dateformat=dd-MM-yyyy
