@@ -20,6 +20,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_NAME := cm_pascal2
 PRODUCT_DEVICE := pascal2
 PRODUCT_BRAND := Rockchip
-PRODUCT_MODEL := CM9 on pascal
+PRODUCT_MODEL := CM10 on pascal
 
 

@@ -128,7 +128,7 @@ PRODUCT_COPY_FILES += \
 	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
 	frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
 	frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-	frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+	frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
 	packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
 #Build.prop 
@@ -163,7 +163,6 @@ PRODUCT_PACKAGES += \
 
 #Test port hardware
 PRODUCT_PACKAGES += \
-	camera\
    	camera.rk29board \
 	gralloc.rk29board \
 	hwcomposer.rk29board \
@@ -183,8 +182,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	dalvik.vm.dexopt-data-only=1
 
 # Should be after the full_base include, which loads languages_full
-PRODUCT_LOCALES += hdpi
+PRODUCT_LOCALES += mdpi
 
 
-$(call inherit-product, frameworks/base/build/tablet-dalvik-heap.mk)
 $(call inherit-product-if-exists, vendor/rockchip/pascal2/device-vendor.mk)
+$(call inherit-product, frameworks/native/build/tablet-dalvik-heap.mk)
