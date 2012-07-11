@@ -1,8 +1,0 @@
-#!/system/bin/sh
-#
-# Load any extra modules
-
-
-insmod /system/lib/modules/gspca_main.ko
-insmod /system/lib/modules/scsi_wait_scan.ko
-

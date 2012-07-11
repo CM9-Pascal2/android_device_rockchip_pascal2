@@ -101,10 +101,9 @@ PRODUCT_COPY_FILES += \
 	device/rockchip/pascal2/prebuilt/lib/hw/audio.primary.rk29sdk.so:system/lib/hw/audio.primary.rk29sdk.so \
 	device/rockchip/pascal2/prebuilt/lib/hw/audio_policy.rk29sdk.so:system/lib/hw/audio_policy.rk29sdk.so \
         device/rockchip/pascal2/prebuilt/lib/hw/copybit.rk29board.so:system/lib/hw/copybit.rk29board.so \
+	device/rockchip/pascal2/prebuilt/lib/hw/lights.rk29board.so:system/lib/hw/lights.rk29board.so \
 	device/rockchip/pascal2/prebuilt/lib/hw/gralloc.rk29board.so:system/lib/hw/gralloc.rk29board.so \
 	device/rockchip/pascal2/prebuilt/lib/hw/hwcomposer.rk29board.so:system/lib/hw/hwcomposer.rk29board.so \
-	device/rockchip/pascal2/prebuilt/lib/hw/camera.rk29board.so:system/lib/hw/camera.rk29board.so \
-	device/rockchip/pascal2/prebuilt/lib/hw/lights.rk29board.so:system/lib/hw/lights.rk29board.so \
 	device/rockchip/pascal2/prebuilt/usr/keylayout/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_028e.kl \
 	device/rockchip/pascal2/prebuilt/usr/keylayout/Vendor_046d_Product_c216.kl:system/usr/keylayout/Vendor_046d_Product_c216.kl \
 	device/rockchip/pascal2/prebuilt/usr/keylayout/Vendor_046d_Product_c294.kl:system/usr/keylayout/Vendor_046d_Product_c294.kl \
@@ -113,7 +112,10 @@ PRODUCT_COPY_FILES += \
 	device/rockchip/pascal2/prebuilt/usr/keylayout/Vendor_054c_Product_0268.kl:system/usr/keylayout/Vendor_054c_Product_0268.kl \
 	device/rockchip/pascal2/prebuilt/usr/keylayout/Vendor_05ac_Product_0239.kl:system/usr/keylayout/Vendor_05ac_Product_0239.kl \
 	device/rockchip/pascal2/prebuilt/usr/keylayout/Vendor_22b8_Product_093d.kl:system/usr/keylayout/Vendor_22b8_Product_093d.kl \
-	device/rockchip/pascal2/prebuilt/lib/hw/sensors.rk29board.so:system/lib/hw/sensors.rk29board.so
+	device/rockchip/pascal2/prebuilt/lib/hw/sensors.rk29board.so:system/lib/hw/sensors.rk29board.so \
+	device/rockchip/pascal2/prebuilt/lib/libyuvtorgb.so:system/lib/libyuvtorgb.so \
+	device/rockchip/pascal2/prebuilt/lib/libOMX_Core.so:system/lib/libOMX_Core.so 
+	
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -159,12 +161,13 @@ PRODUCT_PACKAGES += \
 	utility_busybox \
 	setup_fs \
 
-#omx
+#Test port hardware
 PRODUCT_PACKAGES += \
-	libOMX_Core \
-
-PRODUCT_PACKAGES += \
-	libyuv
+	camera\
+   	camera.rk29board \
+	gralloc.rk29board \
+	hwcomposer.rk29board \
+	libvpu
 
 # other kernel modules not in ramdisk
 PRODUCT_COPY_FILES += $(foreach module,\
@@ -180,7 +183,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	dalvik.vm.dexopt-data-only=1
 
 # Should be after the full_base include, which loads languages_full
-PRODUCT_LOCALES += mdpi
+PRODUCT_LOCALES += hdpi
 
 
 $(call inherit-product, frameworks/base/build/tablet-dalvik-heap.mk)

@@ -67,6 +67,8 @@ loglevel 3
     mkdir /mnt/obb 0700 root system
     mount tmpfs tmpfs /mnt/obb mode=0755,gid=1000
 
+    mkdir /sd-ext 0771 system system
+
     write /proc/sys/kernel/panic_on_oops 1
     write /proc/sys/kernel/hung_task_timeout_secs 0
     write /proc/cpu/alignment 4
@@ -311,7 +313,23 @@ on boot
 
     class_start core
     class_start main
+   chown system graphics /dev/galcore
+    chmod 0666 /dev/galcore
+    chown system camera /dev/video0
+    chmod 0660 /dev/video0
+    chown system camera /dev/pmem_cam
+    chmod 0660 /dev/pmem_cam
+    chown system system /dev/vpu_mem
+    chmod 0666 /dev/vpu_mem
+    chown system system /dev/vpu_service
+    chmod 0666 /dev/vpu_service
+    chown system system /dev/rk29-ipp
+    chmod 0660 /dev/rk29-ipp
 
+    chown system system /dev/input/event0
+    chown system system /dev/input/event1
+    chown system system /dev/input/event2
+    chown system system /dev/mma8452_daemon
 # Run sysinit
     exec /system/bin/sysinit
 
@@ -459,7 +477,7 @@ service surfaceflinger /system/bin/surfaceflinger
 
 service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-system-server
     class main
-    socket zygote stream 660 root system
+    socket zygote stream 666 root system
     onrestart write /sys/android_power/request_state wake
     onrestart write /sys/power/state on
     onrestart restart media
