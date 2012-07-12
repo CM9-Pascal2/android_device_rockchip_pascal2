@@ -166,6 +166,7 @@ PRODUCT_PACKAGES += \
    	utility_make_ext4fs \
 	utility_busybox \
 	setup_fs \
+	make_ext4fs \
 
 #Test port hardware
 PRODUCT_PACKAGES += \
