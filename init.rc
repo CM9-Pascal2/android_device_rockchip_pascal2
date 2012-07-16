@@ -125,7 +125,7 @@ loglevel 3
 on fs
     insmod /rk29xxnand_ko.ko
     # mount  partitions
-    mount ext4 mtd@system /system noatime
+    mount ext3 mtd@system /system noatime
     mount ext3 mtd@userdata /data nosuid nodev noatime
     mount ext3 mtd@cache /cache nosuid nodev noatime
     

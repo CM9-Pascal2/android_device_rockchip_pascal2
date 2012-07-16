@@ -23,8 +23,7 @@ PRODUCT_CHARACTERISTICS := tablet
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 # Inherit from pascal2 device
 $(call inherit-product, device/rockchip/pascal2/device.mk)
-# Inherit tablet dalvik settings
-#$(call inherit-product, frameworks/base/build/tablet-dalvik-heap.mk)
+
 # Set those variables here to overwrite the inherited values.
 PRODUCT_NAME := full_pascal2
 PRODUCT_DEVICE := pascal2

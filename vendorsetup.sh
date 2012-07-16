@@ -15,4 +15,4 @@
 #
 
 add_lunch_combo full_pascal2-userdebug
-add_lunch_combo cm_pascal2-userdebug
+#add_lunch_combo cm_pascal2-userdebug

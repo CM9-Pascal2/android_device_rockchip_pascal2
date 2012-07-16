@@ -1,4 +1,4 @@
-# mount_point	fstype		device
+# mount_point	fs_type		device
 
 /boot		emmc		/dev/block/mtdblock3
 /cache		ext3		/dev/block/mtdblock6
@@ -8,4 +8,4 @@
 /recovery	emmc		/dev/block/mtdblock4
 /sdcard		vfat		/dev/block/mmcblk0p1	/dev/block/mmcblk0
 /sd-ext		auto		/dev/block/mmcblk0p2
-/system		ext4		/dev/block/mtdblock9
+/system		ext3		/dev/block/mtdblock9
