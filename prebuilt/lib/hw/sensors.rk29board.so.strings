@@ -1,0 +1,272 @@
+_ZN22sensors_poll_context_t8setDelayEix
+__aeabi_unwind_cpp_pr0
+_ZN22sensors_poll_context_t10pollEventsEP15sensors_event_ti
+poll
+__errno
+strerror
+__android_log_print
+read
+_ZN22sensors_poll_context_t8activateEii
+write
+_ZN22sensors_poll_context_tD1Ev
+close
+_ZdlPv
+_ZN22sensors_poll_context_tD2Ev
+_ZN22sensors_poll_context_tC1Ev
+_Znwj
+_ZN11LightSensorC1Ev
+_ZN15ProximitySensorC1Ev
+_ZN9MmaSensorC1Ev
+_ZN9AkmSensorC1Ev
+pipe
+fcntl
+init_nusensors
+memset
+_ZN22sensors_poll_context_tC2Ev
+_ZN24InputEventCircularReader9readEventEPPK11input_event
+_ZN24InputEventCircularReader4nextEv
+_ZN24InputEventCircularReader10dumpEventsEPK11input_eventi
+_ZN24InputEventCircularReader4fillEi
+memcpy
+_ZN24InputEventCircularReaderD1Ev
+_ZdaPv
+_ZN24InputEventCircularReaderD2Ev
+_ZN24InputEventCircularReaderC1Ej
+_Znaj
+_ZN24InputEventCircularReaderC2Ej
+_ZNK10SensorBase5getFdEv
+_ZN10SensorBase8setDelayEix
+_ZNK10SensorBase16hasPendingEventsEv
+_ZN10SensorBase12close_deviceEv
+_ZN10SensorBaseD1Ev
+_ZTV10SensorBase
+_ZN10SensorBaseD2Ev
+_ZN10SensorBase9openInputEPKc
+opendir
+strcpy
+strlen
+open
+ioctl
+strcmp
+readdir
+closedir
+__stack_chk_fail
+__stack_chk_guard
+__aeabi_unwind_cpp_pr1
+_ZN10SensorBaseC1EPKcS1_
+_ZN10SensorBaseC2EPKcS1_
+_ZN10SensorBase12getTimestampEv
+clock_gettime
+_ZN10SensorBase11open_deviceEv
+_ZN10SensorBaseD0Ev
+__cxa_pure_virtual
+_ZN9AkmSensor12processEventEii
+_ZN9AkmSensor10readEventsEP15sensors_event_ti
+__aeabi_ldivmod
+_ZN9AkmSensor12update_delayEv
+_ZN9AkmSensor8setDelayEix
+_ZN9AkmSensor6enableEii
+_ZN9AkmSensorD1Ev
+_ZTV9AkmSensor
+_ZN9AkmSensorD0Ev
+_ZN9AkmSensorD2Ev
+_ZN9AkmSensorC2Ev
+_ZN9MmaSensor12processEventEii
+_ZN9MmaSensor10readEventsEP15sensors_event_ti
+__aeabi_idiv
+_ZN9MmaSensor12update_delayEv
+_ZN9MmaSensor8setDelayEix
+_ZN9MmaSensor6enableEii
+_ZN9MmaSensorD1Ev
+_ZTV9MmaSensor
+_ZN9MmaSensorD0Ev
+_ZN9MmaSensorD2Ev
+_ZN9MmaSensorC2Ev
+_ZNK11LightSensor16hasPendingEventsEv
+_ZNK11LightSensor12indexToValueEj
+_ZN11LightSensor10readEventsEP15sensors_event_ti
+_ZN11LightSensor15setInitialStateEv
+_ZN11LightSensor6enableEii
+_ZN11LightSensorD1Ev
+_ZTV11LightSensor
+_ZN11LightSensorD0Ev
+_ZN11LightSensorD2Ev
+_ZN11LightSensorC2Ev
+_ZNK15ProximitySensor16hasPendingEventsEv
+_ZNK15ProximitySensor12indexToValueEj
+_ZN15ProximitySensor10readEventsEP15sensors_event_ti
+_ZN15ProximitySensor15setInitialStateEv
+_ZN15ProximitySensor6enableEii
+_ZN15ProximitySensorD1Ev
+_ZTV15ProximitySensor
+_ZN15ProximitySensorD0Ev
+_ZN15ProximitySensorD2Ev
+_ZN15ProximitySensorC2Ev
+__cxa_finalize
+__dso_handle
+__INIT_ARRAY__
+__FINI_ARRAY__
+__exidx_end
+__exidx_start
+__data_start
+_edata
+__bss_start
+__bss_start__
+_bss_end__
+__bss_end__
+__end__
+_end
+_stack
+liblog.so
+libcutils.so
+libutils.so
+libc.so
+libstdc++.so
+libm.so
+sensors.rk29board.so
+K{DS
+hTiS
+JI>FJH
+DJKyDxD
+R0h"-
+#I#JyDzD
+hvB,
+'0W+
+K{DS
+JyDzD
+g(F+h
+P(F*h
+j0`fO
+JyDzD
+ Fbg
+!L" F
+K	J	I#`zD	HyD	K
+c{D`d
+d,`p
+TDWH
+`pGpG
+`(Fp
+` Fc`p
+F	H{D
+@LxD
+W@FO
+8F1F
+J3FyDzD
+1 F{D
+	M{D
+FA`]YO
+ a Fp
+#iFB
+J#FyDzD
+5DShbhh&hhhhh
+!i(F
+8Fh"
+0F)F	J
+	L|DT
+1 c`
+2K{DS
+&,I,J-KyD-OzD{D
+hFBV
+JyDzD
+ Fbi
+faga
+sItJp
+yDrM
+}D !
+T0h!
+#!c`c F
+hFI2F
+ai iA
+AIba
+bi iB
+'Ica
+,: i
+-J i
+.Z i
+u=PE
+!i(F
+h"h7
+&EIxD
+`iyDDJDKzD
+>IQ >J>KyD>MzD
+7Nb#
+ 6J~D
+D6OzD
+1FCF
+*Jd#zD$
+)Nj!
+ (J~D
+D(OCFzD
+Jl#zD
+cabi
+,I-Jp
+yDzD,M
++J}D
+&fa&b
+1!` !
+1F*F
+# d F
+!{DS
+!i8F
+h"h5
+8FYF
+hEBU
+JyDzD
+fa5F
+@"h!`c!c
+ `a F
+!i8F
+h"h5
+8FYF
+hEBU
+JyDzD
+fa5F
+@"h!`c!c
+SensorsHal
+poll() failed (%s)
+error reading from wake pipe (%s)
+unknown message on wake queue (0x%02x)
+error sending wake message (%s)
+error creating wake pipe (%s)
+/dev/input
+couldn't find '%s' input device
+Couldn't open %s (%s)
+AkmSensor: unknown event (type=%d, code=%d)
+[File] : %s; [Line] : %d; [Func] : %s() ; ! Info : newState = 0x%x, what = 0x%x, mEnabled = 0x%x.
+hardware/rk29/sensor/normal/AkmSensor.cpp
+ECS_IOCTL_APP_SET_XXX failed (%s)
+/dev/akm8975_aot
+compass
+MmaSensor: unknown event (type=%d, code=%d)
+[File] : %s; [Line] : %d; [Func] : %s() ; !!! Error : fail to perform MMA_IOCTL_APP_SET_RATE, result = %d, error is '%s'
+hardware/rk29/sensor/normal/MmaSensor.cpp
+[File] : %s; [Line] : %d; [Func] : %s() ; !!! Error : invalie 'handle'.
+[File] : %s; [Line] : %d; [Func] : %s() ; ! Info : to call 'MMA_IOCTL_START'.
+[File] : %s; [Line] : %d; [Func] : %s() ; !!! Error : fail to perform MMA_IOCTL_START, err = %d, error is '%s'
+[File] : %s; [Line] : %d; [Func] : %s() ; ! Info : to call 'MMA_IOCTL_CLOSE'.
+[File] : %s; [Line] : %d; [Func] : %s() ; !!! Error : fail to perform MMA_IOCTL_CLOSE, err = %d, error is '%s'
+/dev/mma8452_daemon
+gsensor
+LightSensor: unknown event (type=%d, code=%d)
+LIGHTSENSOR_IOCTL_ENABLE failed (%s)
+/dev/lightsensor
+lightsensor-level
+ProximitySensor: unknown event (type=%d, code=%d)
+PSENSOR_IOCTL_ENABLE failed (%s)
+/dev/psensor
+proximity
+sensors
+MMA8451Q & AK8973A Sensors Module
+The RKdroid Project
+MMA8452Q 3-axis Accelerometer
+Freescale Semiconductor
+AK8975 3-axis Magnetic field sensor
+Asahi Kasei
+AK8975 Orientation sensor
+AL3006Proximity sensor
+Dyna Image Corporation
+AL3006 light sensor
+enable
+enable
+update_delay
+TMWH

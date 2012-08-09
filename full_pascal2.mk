@@ -13,19 +13,23 @@
 # limitations under the License.
 
 # Camera
-PRODUCT_PACKAGES := \
+PRODUCT_PACKAGES += \
 	Camera
-
-# Build characteristics setting 
-PRODUCT_CHARACTERISTICS := tablet
+	
+# My packages
+PRODUCT_PACKAGES += \
+    Launcher2
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+
 # Inherit from pascal2 device
 $(call inherit-product, device/rockchip/pascal2/device.mk)
 
 # Set those variables here to overwrite the inherited values.
-PRODUCT_NAME := full_pascal2
+
 PRODUCT_DEVICE := pascal2
-PRODUCT_BRAND := Rockchip
-PRODUCT_MODEL := CM10 on pascal
+PRODUCT_NAME := cm_pascal2
+PRODUCT_BRAND := Pascal2
+PRODUCT_MODEL := BQ Pascal 2
+PRODUCT_MANUFACTURER := Mundo Reader

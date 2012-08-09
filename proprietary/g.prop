@@ -1,0 +1,5 @@
+# begin addon properties
+ro.addon.type=gapps
+ro.addon.platform=JB
+ro.addon.version=gapps-jb-20120726
+# end addon properties

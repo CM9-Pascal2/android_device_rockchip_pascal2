@@ -17,7 +17,6 @@ import re
 
 import pascal2_common as common
 
-
 class EdifyGenerator(object):
   """Class to generate scripts in the 'edify' recovery script language
   used from donut onwards."""
@@ -101,9 +100,8 @@ class EdifyGenerator(object):
                          for b in bootloaders]) +
            ");")
     self.script.append(self._WordWrap(cmd))
-    self.script.append('delete_recursive("/system");')
-  def RunBackup(self, command):
 
+  def RunBackup(self, command):
     self.script.append('package_extract_file("system/bin/backuptool.sh", "/tmp/backuptool.sh");')
     self.script.append('package_extract_file("system/bin/backuptool.functions", "/tmp/backuptool.functions");')
     self.script.append('set_perm(0, 0, 0777, "/tmp/backuptool.sh");')
@@ -112,9 +110,6 @@ class EdifyGenerator(object):
     if command == "restore":
         self.script.append('delete("/system/bin/backuptool.sh");')
         self.script.append('delete("/system/bin/backuptool.functions");')
-
-  def Clean(self, partition):
-    self.script.append(('delete_recursive("%s");' % partition))
 
   def RunConfig(self, command):
     self.script.append('package_extract_file("system/bin/modelid_cfg.sh", "/tmp/modelid_cfg.sh");')
@@ -179,17 +174,17 @@ class EdifyGenerator(object):
     """Log a message to the screen (if the logs are visible)."""
     self.script.append('ui_print("%s");' % (message,))
 
-  #def FormatPartition(self, partition):
-   # """Format the given partition, specified by its mount point (eg,
-    #"/system")."""
+  def FormatPartition(self, partition):
+    """Format the given partition, specified by its mount point (eg,
+    "/system")."""
 
-    #reserve_size = 0
-    #fstab = self.info.get("fstab", None)
-    #if fstab:
-    #  p = fstab[partition]
-    #  self.script.append('format("%s", "%s", "%s", "%s", "%s");' %
-    #                     (p.fs_type, common.PARTITION_TYPES[p.fs_type],
-    #                      p.device, p.length, p.mount_point))
+    reserve_size = 0
+    fstab = self.info.get("fstab", None)
+    if fstab:
+      p = fstab[partition]
+      self.script.append('format("%s", "%s", "%s", "%s", "%s");' %
+                         (p.fs_type, common.PARTITION_TYPES[p.fs_type],
+                          p.device, p.length, p.mount_point))
 
   def DeleteFiles(self, file_list):
     """Delete all files in file_list."""

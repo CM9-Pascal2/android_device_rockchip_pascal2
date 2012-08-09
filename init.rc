@@ -4,13 +4,11 @@
 # This is a common source of Android security bugs.
 #
 
-import /init.${ro.hardware}.rc
-import /init.usb.rc
-import /init.trace.rc
-
 on early-init
-    # Set init and its forked children's oom_adj.
-    write /proc/1/oom_adj -16
+	loglevel 8
+    
+	# Set init and its forked children's oom_adj.
+    write /proc/1/oom_score_adj -16
 
     start ueventd
 
@@ -21,7 +19,7 @@ on init
 
 sysclktz 0
 
-loglevel 3
+
 
 # setup the global environment
     export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
@@ -47,7 +45,7 @@ loglevel 3
 
 # create mountpoints
     mkdir /mnt/sdcard 0000 system system
-     mkdir /emmc 0000 system system
+    mkdir /emmc 0000 system system
 
 # Create cgroup mount point for cpu accounting
     mkdir /acct
@@ -123,11 +121,11 @@ loglevel 3
     chmod 0644 /dev/xt_qtaguid
 
 on fs
-    insmod /rk29xxnand_ko.ko
+    insmod /rk29xxnand_ko.ko.3.0.8+
     # mount  partitions
-    mount ext3 mtd@system /system noatime
-    mount ext3 mtd@userdata /data nosuid nodev noatime
-    mount ext3 mtd@cache /cache nosuid nodev noatime
+    mount ext4 mtd@system /system noatime
+    mount ext4 mtd@userdata /data nosuid nodev noatime
+    mount ext4 mtd@cache /cache nosuid nodev noatime
     
     #mount ext4 /dev/block/mtdblock9 /system
     #mount ext4 /dev/block/stl9 /system ro remount
@@ -363,7 +361,7 @@ on boot
 
     class_start core
     class_start main
-   chown system graphics /dev/galcore
+	chown system graphics /dev/galcore
     chmod 0666 /dev/galcore
     chown system camera /dev/video0
     chmod 0660 /dev/video0
@@ -379,7 +377,8 @@ on boot
     chown system system /dev/input/event0
     chown system system /dev/input/event1
     chown system system /dev/input/event2
-    chown system system /dev/mma8452_daemon
+    chown system system /dev/mma7660_daemon
+	
 # Run sysinit
     exec /system/bin/sysinit
 
@@ -414,7 +413,7 @@ on property:sys.usb.config=none
     stop adbd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/bDeviceClass 0
-    setprop sys.usb.state $sys.usb.config
+    setprop sys.usb.state ${sys.usb.config}
 
 # adb only USB configuration
 # This should only be used during device bringup
@@ -423,34 +422,34 @@ on property:sys.usb.config=adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 0bb4
     write /sys/class/android_usb/android0/idProduct 0c01
-    write /sys/class/android_usb/android0/functions $sys.usb.config
+    write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
     start adbd
-    setprop sys.usb.state $sys.usb.config
+    setprop sys.usb.state ${sys.usb.config}
 
 # USB accessory configuration
 on property:sys.usb.config=accessory
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 18d1
     write /sys/class/android_usb/android0/idProduct 2d00
-    write /sys/class/android_usb/android0/functions $sys.usb.config
+    write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
-    setprop sys.usb.state $sys.usb.config
+    setprop sys.usb.state ${sys.usb.config}
 
 # USB accessory configuration, with adb
 on property:sys.usb.config=accessory,adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 18d1
     write /sys/class/android_usb/android0/idProduct 2d01
-    write /sys/class/android_usb/android0/functions $sys.usb.config
+    write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/enable 1
     start adbd
-    setprop sys.usb.state $sys.usb.config
+    setprop sys.usb.state ${sys.usb.config}
 
 # Used to set USB configuration at boot and to switch the configuration
 # when changing the default configuration
 on property:persist.sys.usb.config=*
-    setprop sys.usb.config $persist.sys.usb.config
+    setprop sys.usb.config ${persist.sys.usb.config}
 
 ## Daemon processes to be run by init.
 ##
@@ -628,4 +627,3 @@ on property:service.adb.tcp.port=5555
 on property:service.adb.tcp.port=-1
     stop adbd
     start adbd
-
