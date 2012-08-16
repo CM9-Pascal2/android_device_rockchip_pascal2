@@ -123,9 +123,9 @@ sysclktz 0
 on fs
     insmod /rk29xxnand_ko.ko.3.0.8+
     # mount  partitions
-    mount ext4 mtd@system /system noatime
-    mount ext4 mtd@userdata /data nosuid nodev noatime
-    mount ext4 mtd@cache /cache nosuid nodev noatime
+    mount ext3 mtd@system /system noatime
+    mount ext3 mtd@userdata /data nosuid nodev noatime
+    mount ext3 mtd@cache /cache nosuid nodev noatime
     
     #mount ext4 /dev/block/mtdblock9 /system
     #mount ext4 /dev/block/stl9 /system ro remount

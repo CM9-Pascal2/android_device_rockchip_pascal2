@@ -70,6 +70,8 @@ TARGET_CUSTOM_RELEASETOOL := ./device/rockchip/pascal2/releasetools/squisher
 BOARD_EGL_CFG := device/rockchip/pascal2/egl.cfg
 BOARD_NO_RGBX_8888 := true
 USE_OPENGL_RENDERER := true
+TARGET_USES_GL_VENDOR_EXTENSIONS := true
+TARGET_DISABLE_TRIPLE_BUFFERING := false
 
 ### changed from true
 BOARD_USES_PROPRIETARY_OMX := false
@@ -77,10 +79,9 @@ BOARD_USES_PROPRIETARY_OMX := false
 
 COMMON_GLOBAL_CFLAGS += -DSURFACEFLINGER_FORCE_SCREEN_RELEASE -DMISSING_EGL_PIXEL_FORMAT_YV12 -DMISSING_GRALLOC_BUFFERS
 
-### No HWCOMPOSER - TO DO
+### No HWCOMPOSER -  #TODO
 BOARD_USES_HWCOMPOSER := false
 ###
-
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 
 # Misc display settings
@@ -88,14 +89,17 @@ BOARD_USE_SKIA_LCDTEXT := true
 BOARD_HAVE_VPU := true
 
 #Camera
-USE_CAMERA_STUB := true
+USE_CAMERA_STUB := false
 BOARD_CAMERA_USE_MM_HEAP := true
 
-#TARGET_SPECIFIC_HEADER_PATH := device/rockchip/pascal2/include
+#Audio
+BOARD_USES_ALSA_AUDIO := true
+
+TARGET_SPECIFIC_HEADER_PATH := device/rockchip/pascal2/include
 
 # Enable WEBGL in WebKit
 ### no webGL TO DO 
-ENABLE_WEBGL := false
+ENABLE_WEBGL := true
 ###
 
 #recovery
@@ -105,7 +109,7 @@ BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
 BOARD_NO_RGBX_8888 := true
 BOARD_UMS_2ND_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun1/file"
 BOARD_HAS_NO_SELECT_BUTTON := true
-
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 #Vold
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 TARGET_USE_CUSTOM_SECOND_LUN_NUM := 1
@@ -132,7 +136,8 @@ WIFI_DRIVER_FW_PATH_PARAM := ""
 TARGET_CUSTOM_WIFI := ../../hardware/realtek/wlan/libhardware_legacy/wifi/wifi_realtek.c
 
 
-
+#HDMI
+TARGET_HAVE_HDMI_OUT := true
 #Bluethoot
 BOARD_HAVE_BLUETOOTH := true
 #BOARD_HAVE_BLUETOOTH_BCM := true

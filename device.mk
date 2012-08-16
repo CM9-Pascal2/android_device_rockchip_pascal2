@@ -23,7 +23,6 @@ PRODUCT_CHARACTERISTICS := tablet
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 LOCAL_KERNEL := device/rockchip/pascal2/kernel
-#LOCAL_KERNEL := device/rockchip/pascal2/kernel-3.0.8
 else
 LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
@@ -35,7 +34,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_KERNEL):kernel.img \
     device/rockchip/pascal2/init.rc:root/init.rc \
 	device/rockchip/pascal2/init.rk29board.usb.rc:root/init.rk29board.usb.rc \
-	device/rockchip/pascal2/init.target.rc:root/init.target.rc \
+	device/rockchip/pascal2/init.rk29board.rc:root/init.rk29board.rc \
     device/rockchip/pascal2/rk29xxnand_ko.ko.3.0.8+:root/rk29xxnand_ko.ko.3.0.8+ \
     device/rockchip/pascal2/rk29xxnand_ko.ko.3.0.8+:recovery/root/rk29xxnand_ko.ko.3.0.8+ \
 	device/rockchip/pascal2/ueventd.rk29board.rc:root/ueventd.rk29board.rc \
@@ -140,17 +139,18 @@ PRODUCT_PACKAGES += \
 	
 #HAL port hardware
 PRODUCT_PACKAGES += \
+	libGLES_android_hw \
 	camera.rk29board \
 	sensors.rk29board \
 	audio.primary.rk29board \
 	audio_policy.default \
 	tinyplay \
-    tinycap \
-    tinymix \
+    	tinycap \
+   	tinymix \
 	audio.a2dp.default \
-    audio.usb.default \
-    libtinyalsa \
-    libaudioutils
+   	audio.usb.default \
+   	libtinyalsa \
+    	libaudioutils
 	
 	
 
@@ -180,21 +180,18 @@ PRODUCT_COPY_FILES += \
 
 #Build.prop 
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.sf.lcd_density=100 \
+	ro.sf.lcd_density=120 \
 	ro.opengles.version=131072 \
 	hwui.render_dirty_regions=false \
-    rild.libpath=/system/lib/libril-rk29-dataonly.so \
-    ro.kernel.android.checkjni=1 \
-    persist.sys.ui.hw=true \
-    opengl.vivante.texture=1 \
-	ro.rk.sdcard_volume=InteralStorage \
-	ro.rk.external_volume=SDCard \
-	ro.rk.usb_host_volume=USBDisk \
+    	rild.libpath=/system/lib/libril-rk29-dataonly.so \
+    	ro.kernel.android.checkjni=1 \
+   	persist.sys.ui.hw=true \
+    	opengl.vivante.texture=1 \
 	ro.sf.fakerotation=true \
-    sys.hwc.compose_policy=6 \
+    	sys.hwc.compose_policy=6 \
 	ro.vold.switchablepair=/mnt/sdcard,/mnt/external_sd \
 	accelerometer.invert_x=1 \
-	qemu.sf.lcd_density=100 \
+	qemu.sf.lcd_density=120 \
 	qemu.hw.mainkeys=0
 	
 PRODUCT_TAGS += dalvik.gc.type-precise
