@@ -118,7 +118,6 @@ PRODUCT_COPY_FILES += \
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
 	frameworks/base/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
-	frameworks/base/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
 	frameworks/base/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
 	frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
 	frameworks/base/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
@@ -141,13 +140,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
         sys.hwc.compose_policy=6 \
 	qemu.sf.lcd_density=120 \
 	ro.vold.switchablepair=/mnt/sdcard,/mnt/external_sd \
-	accelerometer.invert_x=1
 
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_PACKAGES += \
 	librs_jni \
-	com.android.future.usb.accessory
+	com.android.future.usb.accessory \
+	libskia
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
@@ -159,12 +158,10 @@ PRODUCT_PACKAGES += \
 	utility_busybox \
 	setup_fs \
 
-#omx
+#Graphics
 PRODUCT_PACKAGES += \
 	libOMX_Core \
-
-PRODUCT_PACKAGES += \
-	libyuv
+	libyuvtorgb
 
 # other kernel modules not in ramdisk
 PRODUCT_COPY_FILES += $(foreach module,\

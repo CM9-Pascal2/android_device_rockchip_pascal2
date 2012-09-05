@@ -21,7 +21,7 @@
 # Use the non-open-source parts, if they're present
 -include vendor/rockchip/pascal2/BoardConfigVendor.mk
 
-TARGET_BOARD_PLATFORM := rk29sdk
+TARGET_BOARD_PLATFORM := rk29board
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
@@ -60,15 +60,15 @@ TARGET_CUSTOM_RELEASETOOL := ./device/rockchip/pascal2/releasetools/squisher
 
 #Graphics
 BOARD_EGL_CFG := device/rockchip/pascal2/egl.cfg
-BOARD_NO_RGBX_8888 := true
+#BOARD_NO_RGBX_8888 := true
 USE_OPENGL_RENDERER := true
-BOARD_USES_PROPRIETARY_OMX := true
+#BOARD_USES_PROPRIETARY_OMX := true
 COMMON_GLOBAL_CFLAGS += -DSURFACEFLINGER_FORCE_SCREEN_RELEASE
-BOARD_USES_HWCOMPOSER := true
+#BOARD_USES_HWCOMPOSER := true
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 # Misc display settings
-BOARD_USE_SKIA_LCDTEXT := true
-BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
+#BOARD_USE_SKIA_LCDTEXT := true
+#BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
 #TODO BGRA8888
 
 #Camera
@@ -76,7 +76,9 @@ USE_CAMERA_STUB := true
 
 # Enable WEBGL in WebKit
 ENABLE_WEBGL := true
-
+ENABLE_SVG := true
+ENABLE_WTF_USE_ACCELERATED_COMPOSITING := false
+JAVASCRIPT_ENGINE := v8
 #recovery
 TARGET_RECOVERY_INITRC := device/rockchip/pascal2/recovery_init.rc
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/rockchip/pascal2/recovery_keys.c
@@ -98,4 +100,3 @@ WIFI_DRIVER_MODULE_NAME     := "wlan"
 
 #Bluethoot
 BOARD_HAVE_BLUETOOTH :=true
-#BOARD_HAVE_BLUETOOTH_BCM := true
