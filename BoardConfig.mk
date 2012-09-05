@@ -73,9 +73,7 @@ USE_CAMERA_STUB := true
 
 # Enable WEBGL in WebKit
 ENABLE_WEBGL := true
-ENABLE_SVG := true
-ENABLE_WTF_USE_ACCELERATED_COMPOSITING := false
-JAVASCRIPT_ENGINE := v8
+
 # For WebKit rendering issue
 TARGET_FORCE_CPU_UPLOAD := true
 #recovery

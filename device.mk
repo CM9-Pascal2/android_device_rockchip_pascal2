@@ -94,9 +94,28 @@ PRODUCT_COPY_FILES += \
 	device/rockchip/pascal2/prebuilt/lib/libGLSLC.so:system/lib/libGLSLC.so \
 	device/rockchip/pascal2/prebuilt/lib/librkswscale.so:system/lib/librkswscale.so \
 	device/rockchip/pascal2/prebuilt/lib/librkwmapro.so:system/lib/librkwmapro.so \
+	device/rockchip/pascal2/prebuilt/lib/libOMX_Core.so:system/lib/libOMX_Core.so \
+  	device/rockchip/pascal2/prebuilt/lib/libapedec.so:system/lib/libapedec.so \
+  	device/rockchip/pascal2/prebuilt/lib/libion.so:system/lib/libion.so \
+  	device/rockchip/pascal2/prebuilt/lib/libjpeghwdec.so:system/lib/libjpeghwdec.so \
+  	device/rockchip/pascal2/prebuilt/lib/libjpeghwenc.so:system/lib/libjpeghwenc.so \
+  	device/rockchip/pascal2/prebuilt/lib/libmediaplayerservice.so:system/lib/libmediaplayerservice.so \
+	device/rockchip/pascal2/prebuilt/lib/libstagefright_foundation.so:system/lib/libstagefright_foundation.so \
+  	device/rockchip/pascal2/prebuilt/lib/libomxvpu.so:system/lib/libomxvpu.so \
+	device/rockchip/pascal2/prebuilt/lib/libstagefright.so:system/lib/libstagefright.so \
+  	device/rockchip/pascal2/prebuilt/libstagefright_foundation.so:system/lib/libstagefright_foundation.so \
+  	device/rockchip/pascal2/prebuilt/lib/libstagefrighthw.so:system/lib/libstagefrighthw.so \
+  	device/rockchip/pascal2/prebuilt/lib/libvpu.so:system/lib/libvpu.so \
+  	device/rockchip/pascal2/prebuilt/lib/libwpa_client.so:system/lib/libwpa_client.so \
+  	device/rockchip/pascal2/prebuilt/lib/libyuvtorgb.so:system/lib/libyuvtorgb.so \
+  	device/rockchip/pascal2/prebuilt/lib/registry:system/lib/registry \
+  	device/rockchip/pascal2/prebuilt/lib/rmsdk.ver:system/lib/rmsdk.ver \
+  	device/rockchip/pascal2/prebuilt/lib/stagefright.ver:system/lib/stagefright.ver \
+  	device/rockchip/pascal2/prebuilt/lib/webkit_ver:system/lib/webkit_ver \
 	device/rockchip/pascal2/egl.cfg:system/lib/egl/egl.cfg \
 	device/rockchip/pascal2/prebuilt/lib/egl/libEGL_VIVANTE.so:system/lib/egl/libEGL_VIVANTE.so \
 	device/rockchip/pascal2/prebuilt/lib/egl/libGLESv1_CM_VIVANTE.so:system/lib/egl/libGLESv1_CM_VIVANTE.so \
+	device/rockchip/pascal2/prebuilt/lib/egl/libGLES_android.so:system/lib/egl/libGLES_android.so \
 	device/rockchip/pascal2/prebuilt/lib/egl/libGLESv2_VIVANTE.so:system/lib/egl/libGLESv2_VIVANTE.so \
 	device/rockchip/pascal2/prebuilt/lib/hw/audio.primary.rk29sdk.so:system/lib/hw/audio.primary.rk29sdk.so \
 	device/rockchip/pascal2/prebuilt/lib/hw/audio_policy.rk29sdk.so:system/lib/hw/audio_policy.rk29sdk.so \
