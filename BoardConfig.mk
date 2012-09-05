@@ -21,12 +21,14 @@
 # Use the non-open-source parts, if they're present
 -include vendor/rockchip/pascal2/BoardConfigVendor.mk
 
-TARGET_BOARD_PLATFORM := rk29board
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_ARCH_VARIANT_CPU := cortex-a8
+ARCH_ARM_HAVE_NEON := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
-
+TARGET_GLOBAL_CFLAGS += -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp
 
 #boot #TEst1
 BOARD_KERNEL_CMDLINE := console=ttyS1,115200n8n androidboot.console=ttyS1 init=/init initrd=0x62000000,0x800000 mtdparts=rk29xxnand:0x00002000@0x00002000(misc),0x00004000@0x00004000(kernel),0x00008000@0x00008000(boot),0x00008000@0x00010000(recovery),0x000F0000@0x00018000(backup),0x0003a000@0x00108000(cache),0x00200000@0x00142000(userdata),0x00002000@0x00342000(kpanic),0x000E6000@0x00344000(system),-@0x0042A000(user)
@@ -37,7 +39,6 @@ BOARD_RAMDISK_BASE := 0x62000000
 
 TARGET_PROVIDES_INIT_RC := true
 
-TARGET_BOOTLOADER_BOARD_NAME := rk29board
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
@@ -62,15 +63,11 @@ TARGET_CUSTOM_RELEASETOOL := ./device/rockchip/pascal2/releasetools/squisher
 BOARD_EGL_CFG := device/rockchip/pascal2/egl.cfg
 #BOARD_NO_RGBX_8888 := true
 USE_OPENGL_RENDERER := true
-#BOARD_USES_PROPRIETARY_OMX := true
 COMMON_GLOBAL_CFLAGS += -DSURFACEFLINGER_FORCE_SCREEN_RELEASE
-#BOARD_USES_HWCOMPOSER := true
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 # Misc display settings
-#BOARD_USE_SKIA_LCDTEXT := true
-#BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
-#TODO BGRA8888
-
+BOARD_USE_SKIA_LCDTEXT := true
+TARGET_USES_ION := true
 #Camera
 USE_CAMERA_STUB := true
 
@@ -79,6 +76,8 @@ ENABLE_WEBGL := true
 ENABLE_SVG := true
 ENABLE_WTF_USE_ACCELERATED_COMPOSITING := false
 JAVASCRIPT_ENGINE := v8
+# For WebKit rendering issue
+TARGET_FORCE_CPU_UPLOAD := true
 #recovery
 TARGET_RECOVERY_INITRC := device/rockchip/pascal2/recovery_init.rc
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/rockchip/pascal2/recovery_keys.c
